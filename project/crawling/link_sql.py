@@ -1,14 +1,18 @@
 import csv
 import json
 import pymysql
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+PASSWORD = os.getenv('PASSWORD')
 # ------------------------------
 # 🔧 MySQL 연결 정보 수정
 # ------------------------------
 conn = pymysql.connect(
     host="localhost",       # 예: 127.0.0.1
     user="root",            # 사용자명
-    password="1234",     # 비밀번호
+    password=PASSWORD,     # 비밀번호
     db="sknteam2",            # 사용할 DB 이름
     charset="utf8mb4"
 )
