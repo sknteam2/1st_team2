@@ -14,7 +14,7 @@ def insert_ev_regional_status_data():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="1234",
+        password="123456",
         database="sknteam2",
         charset="utf8mb4"
     )

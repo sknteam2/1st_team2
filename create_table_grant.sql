@@ -74,11 +74,6 @@ CREATE TABLE IF NOT EXISTS ev_vehicle_stats (
     total INT COMMENT '전체 차량 수 합계'
 ) COMMENT='지역별 전기차/친환경차 통계 테이블';
 
-CREATE TABLE region (
-    code INT AUTO_INCREMENT PRIMARY KEY COMMENT '지역 코드 (PK)',
-    region VARCHAR(50) NOT NULL UNIQUE COMMENT '도시/도 이름'
-);
-
 -- -------------------------
 CREATE TABLE IF NOT EXISTS ev_regional_status (
     ev_region_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'ev_region_id',
