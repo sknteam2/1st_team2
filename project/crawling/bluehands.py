@@ -6,9 +6,15 @@ from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pymysql
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+PASSWORD=os.getenv("PASSWORD")
 
 # 1. Chrome 브라우저 실행
 path = './chromedriver'
+# path = './chromedriver.exe'
 service = webdriver.chrome.service.Service(path)
 driver = webdriver.Chrome(service=service)
 
@@ -18,7 +24,7 @@ wait = WebDriverWait(driver, 10)
 db = pymysql.connect(
     host='localhost',    # 필요 시 본인 설정
     user='root',
-    password='rlaekqls23',     # 본인 MySQL 비밀번호 입력
+    password=PASSWORD,     # 본인 MySQL 비밀번호 입력
     database='sknteam2',   # 저장할 DB명
     charset='utf8mb4'
 )
