@@ -1,6 +1,11 @@
 # 충전소 데이터 db 삽입
 import pymysql
 from project.api.total_car import fetch_ev_regional_status_data
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+PASSWORD = os.getenv("PASSWORD")
 
 
 def insert_ev_regional_status_data():
@@ -14,7 +19,7 @@ def insert_ev_regional_status_data():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="123456",
+        password=PASSWORD,
         database="sknteam2",
         charset="utf8mb4"
     )

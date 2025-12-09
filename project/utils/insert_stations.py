@@ -8,7 +8,7 @@ load_dotenv()
 
 API_KEY = os.getenv("PUBLIC_DATA_API_KEY")
 BASE_URL = os.getenv("PUBLIC_STATION_BASE_URL")
-
+PASSWORD = os.getenv("PASSWORD")
 
 
 # 1) 지역 이름 표준화
@@ -159,7 +159,7 @@ def insert_ev_stations_to_db():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="123456",
+        password=PASSWORD,
         database="sknteam2",
         charset="utf8mb4"
     )

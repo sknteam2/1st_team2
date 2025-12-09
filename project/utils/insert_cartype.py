@@ -1,7 +1,11 @@
 # 차종별_용도별_차량_등록대수 db 삽입
 import pymysql
 from project.api.car_type import fetch_car_type_data
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+PASSWORD = os.getenv("PASSWORD")
 
 def insert_ev_vehicle_stats_to_db():
     """
@@ -14,7 +18,7 @@ def insert_ev_vehicle_stats_to_db():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="123456",
+        password=PASSWORD,
         database="sknteam2",
         charset="utf8mb4"
     )
