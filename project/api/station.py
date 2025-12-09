@@ -34,7 +34,7 @@ def fetch_ev_station_data():
 
         if not rows:
             break
-
+        print(rows)
         all_rows.extend(rows)
         print(f"{page} 페이지 로드 완료 (rows: {len(rows)})")
 

@@ -3,12 +3,11 @@
 -- FLUSH PRIVILEGES;
 -- 
 -- SELECT user, host FROM mysql.user;
-
 create database sknteam2;
-
 use sknteam2;
 
 CREATE table if not exists ev_station (
+	id Int primary key auto_increment COMMENT 'ID',
     station_id VARCHAR(100) COMMENT '충전소 ID',
     station_name VARCHAR(200) COMMENT '충전소명',
     address VARCHAR(300) COMMENT '충전소 주소',
@@ -17,7 +16,11 @@ CREATE table if not exists ev_station (
     lon DOUBLE COMMENT '경도',
     available_time VARCHAR(200) COMMENT '이용 시간',
     contact VARCHAR(100) COMMENT '연락처',
-    reg_date VARCHAR(50) COMMENT '등록일자'
+    reg_date VARCHAR(50) COMMENT '등록일자',
+ 	region_code INT COMMENT '도시',
+    city_code INT  COMMENT '지역',
+    CONSTRAINT fk_ev_region FOREIGN KEY (region_code) REFERENCES region(region_code) ,
+    CONSTRAINT fk_ev_city   FOREIGN KEY (city_code)   REFERENCES city(city_code)
 );
 
 select * from ev_station
@@ -25,6 +28,39 @@ order by station_id;
 
 select count(*) from ev_station;
 
+CREATE TABLE region (
+    region_code INT AUTO_INCREMENT PRIMARY KEY COMMENT '지역 코드 (PK)',
+    region VARCHAR(50) NOT NULL UNIQUE COMMENT '도시/도 이름'
+);
+
+CREATE TABLE city (
+    city_code INT AUTO_INCREMENT PRIMARY KEY COMMENT '도시 코드 (PK)',
+    city_name VARCHAR(100) NOT NULL COMMENT '시 / 군 / 구 이름',
+    region_code INT NOT NULL COMMENT '광역지역 코드 (FK)',
+    FOREIGN KEY (region_code) REFERENCES region(region_code)
+);
+
+
+INSERT INTO region (region) VALUES
+('서울'),
+('대전'),
+('부산'),
+('대구'),
+('광주'),
+('제주'),
+('경기도'),
+('충청북도'),
+('충청남도'),
+('강원도'),
+('경상북도'),
+('경상남도'),
+('전라북도'),
+('전라남도');
+
+
+
+
+-- --------------------------------
 
 CREATE TABLE IF NOT EXISTS ev_vehicle_stats (
     id INT AUTO_INCREMENT PRIMARY KEY COMMENT '고유 ID',
@@ -38,7 +74,12 @@ CREATE TABLE IF NOT EXISTS ev_vehicle_stats (
     total INT COMMENT '전체 차량 수 합계'
 ) COMMENT='지역별 전기차/친환경차 통계 테이블';
 
+CREATE TABLE region (
+    code INT AUTO_INCREMENT PRIMARY KEY COMMENT '지역 코드 (PK)',
+    region VARCHAR(50) NOT NULL UNIQUE COMMENT '도시/도 이름'
+);
 
+-- -------------------------
 CREATE TABLE IF NOT EXISTS ev_regional_status (
     ev_region_id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'ev_region_id',
     base_date DATE COMMENT '기준일',
@@ -65,7 +106,7 @@ select * from ev_vehicle_stats;
 select * from ev_regional_status;
 
 
-
+-- -------------------
 CREATE TABLE IF NOT EXISTS faq_data (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title TEXT,
@@ -132,3 +173,4 @@ DROP COLUMN category;
 
 ALTER TABLE faq_data
 MODIFY COLUMN id int not null FIRST;
+
