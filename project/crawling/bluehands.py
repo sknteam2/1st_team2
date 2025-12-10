@@ -13,8 +13,8 @@ load_dotenv()
 PASSWORD=os.getenv("PASSWORD")
 
 # 1. Chrome 브라우저 실행
-path = './chromedriver'
-# path = './chromedriver.exe'
+#  path = './chromedriver'
+path = './chromedriver.exe'
 service = webdriver.chrome.service.Service(path)
 driver = webdriver.Chrome(service=service)
 
