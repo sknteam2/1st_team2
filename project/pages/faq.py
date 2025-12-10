@@ -1,5 +1,4 @@
 from utils.load_css import load_css
-load_css("styles/faq.css")
 import streamlit as st
 import mysql.connector
 from mysql.connector import Error
@@ -11,6 +10,12 @@ import pandas as pd
 # 보라색 #f2ecff
 
 
+def load_css(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:  # 인코딩 지정
+        css = f"<style>{f.read()}</style>"
+    st.markdown(css, unsafe_allow_html=True)
+
+load_css("styles/faq.css")
 st.set_page_config(layout="wide")   # 화면 넓게
 
 # 1. 환경변수 & DB 연결
