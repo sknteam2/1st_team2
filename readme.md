@@ -89,16 +89,16 @@
 ## 3. 🛠️ Tech Stack
 ![기술스택](./images/stack.png)
 🔧 Backend : 
-`Python`(3.13.5)
-`Pandas`(2.3.3)
-`Selenium`(4.39.0)
+`Python(3.13.5)`
+`Pandas(2.3.3)`
+`Selenium(4.39.0)`
 <br>
 `Data`
-`MySQL`(0.0.3)
-`DBeaver`(25.3.0)
+`MySQL(0.0.3)`
+`DBeaver(25.3.0)`
 
 🎨 Frontend : 
-`Streamlit`(1.50.0)
+`Streamlit(1.50.0)`
 `SessionState`
 `CSS`
 
