@@ -6,6 +6,7 @@ from mysql.connector import Error
 from dotenv import load_dotenv
 import os
 import pandas as pd
+from utils.connector_sql import create_connection
 
 st.set_page_config(layout="wide")   # 화면 넓게
 
@@ -13,27 +14,13 @@ st.set_page_config(layout="wide")   # 화면 넓게
 load_dotenv()
 PASSWORD = os.getenv('PASSWORD')
 
-def create_connection():
-    try:
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password=PASSWORD,
-            database="sknteam2",
-            charset='utf8'
-        )
-        if conn.is_connected():
-            return conn
-    except Error as e:
-        st.error(f"DB 연결 오류: {e}")
-        return None
-
+create_connection(PASSWORD)
 
 # 2. DB에서 region / city 데이터 불러오기
 
 @st.cache_data
 def load_regions_and_cities():
-    conn = create_connection()
+    conn = create_connection(PASSWORD)
     if conn:
         region_df = pd.read_sql("SELECT * FROM region", conn)
         city_df = pd.read_sql("SELECT * FROM city", conn)
@@ -47,7 +34,7 @@ st.title("정비소 페이지")
 # st.info("정비소 데이터를 여기에 작성하세요.")
 
 # --- SQL 데이터 조회 ---    
-conn = create_connection()
+conn = create_connection(PASSWORD)
 if conn:
     query = """
         SELECT s.name, s.location, s.company_name,

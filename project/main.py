@@ -9,42 +9,25 @@ import pandas as pd
 import streamlit.components.v1 as components
 import json
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
-
+from utils.connector_sql import create_connection
 
 # 1) 환경변수 로드
 
 load_dotenv()
 PASSWORD = os.getenv('PASSWORD')
-DB_HOST = os.getenv('DB_HOST', 'localhost')
-DB_USER = os.getenv('DB_USER', 'root')
-DB_NAME = os.getenv('DB_NAME', 'sknteam2')
 KAKAO_API_KEY = os.getenv("KAKAO_MAP_API_KEY")
 
 st.set_page_config(layout="wide", page_title="충전소 지도")
 
 
 # 2) DB 연결 함수
-
-def create_connection():
-    try:
-        conn = mysql.connector.connect(
-            host=DB_HOST,
-            user=DB_USER,
-            password=PASSWORD,
-            database=DB_NAME,
-            charset='utf8'
-        )
-        return conn
-    except Error as e:
-        st.error(f"DB 연결 오류: {e}")
-        return None
-
+create_connection(PASSWORD)
 
 # 3) 지역/도시 캐싱 로드
 
 @st.cache_data
 def load_regions_and_cities():
-    conn = create_connection()
+    conn = create_connection(PASSWORD)
     if conn:
         region_df = pd.read_sql("SELECT * FROM region", conn)
         city_df = pd.read_sql("SELECT * FROM city", conn)
@@ -68,7 +51,7 @@ st.markdown("""
 
 st.title("최강 2팀 충전소 지도")
 
-conn = create_connection()
+conn = create_connection(PASSWORD)
 if conn is None:
     st.stop()
 
