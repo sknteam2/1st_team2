@@ -119,7 +119,7 @@
 ### ✨ 버전관리
 <details>
     <summary>펼치기 / 접기</summary>
-    ![깃허브 커밋목록](./images/commit.png)
+    <img src="./images/commit.png" alt="커밋목록 이미지">
 </details>
 
 ## 4. 📈 데이터베이스(ERD)
