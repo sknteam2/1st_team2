@@ -9,7 +9,7 @@
 |:-------- |:---------------------------------------- |:--------------------------------------------------- |
 | 유헌상 (팀장) | 데이터 총괄 및 streamlit 메인페이지 구현              | [Git](#none)                                        |
 | 김다빈 (팀원) | 현대 faq, 웹사이트 크롤링 담당, streamlit faq페이지 구현 | [Git](https://github.com/tree0327?tab=repositories) |
-| 김민정 (팀원) | Mysql 데이터 정제 및 streamlit 정비소 페이지 구현      | [Git](https://github.com/skn23-kmj)                 |
+| 김민정 (팀원) | Mysql 데이터 정제 및 streamlit 정비소 페이지 구현, 파이썬 데이터연동 모듈화      | [Git](https://github.com/skn23-kmj)                 |
 
 ## 📅 프로젝트 기간
 
@@ -57,10 +57,6 @@
 
 국내시장의 90% 이상을 점유하고있는 현대의 FAQ를 탑재하여 **원스톱으로 서비스를 확인**할 수 있도록 합니다.
 
-### 4) 지속적인 서비스 확장을 위한 구조적 기반 구축
-
-향후 현대를 포함하여 모든 자동차회사의 FAQ를 탑재하는 등 모든 사용자의 경험을 개선할 수 있는 **확장 가능한 플랫폼 구조**를 목표로 합니다.
-
 ### ✨ 주요 기능 및 특징
 
 **1) EV 충전소 통합 검색:** 
@@ -82,10 +78,6 @@
 
 ### ✨ 참고자료
 
-**🔗[]()**
-
-**🔗[]()**
-
 **🔗[FAQ](https://www.hyundai.com/kr/ko/faq.html)**
 
 **🔗[전기차 차종/용도별 차량 등록 대수](https://www.data.go.kr/data/15142951/fileData.do)**
@@ -97,21 +89,24 @@
 ## 3. 🛠️ Tech Stack
 ![기술스택](./images/stack.png)
 🔧 Backend : 
-`Python`
+`Python`(3.13.5)
+`Pandas`(2.3.3)
+`Selenium`(4.39.0)
+<br>
 `Data`
-`Pandas`
-`MySQL`
-`Selenium`
+`MySQL`(0.0.3)
+`DBeaver`(25.3.0)
 
 🎨 Frontend : 
-`Streamlit`
-`CSS`
+`Streamlit`(1.50.0)
 `SessionState`
+`CSS`
 
 🧰 Tools : 
 `Co-Work Tools`
 `Git / GitHub`
 `Notion`
+`Discord`
 
 ### ✨ 버전관리
 ![깃허브 커밋목록](./images/commit.png)
@@ -161,7 +156,9 @@
         │   └── repair.py            # streamlit 지역별 정비소 찾기 페이지
         ├── 📁utils
         │   ├── __init__.py
-        │   ├── insert_cartype.py     # 전기차 차종/용도별 차량 등록 대수 데이터 삽입 
+        │   ├── insert_cartype.py     # 전기차 차종/용도별 
+        │   ├── connector_sql.py      # sql연결 모듈
+        차량 등록 대수 데이터 삽입 
         │   ├── insert_stations.py    # 충전소 위치 및 현황 정보 데이터 삽입 
         │   └── insert_totalcar.py    # 지역별 전기차 현황 데이터 삽입 
         │
@@ -206,7 +203,3 @@
 - 유헌상
 - 김다빈
 - 김민정
-  
-  ```
-  팀장님 readme 확인해주세요오오
-  ```
